@@ -1,0 +1,52 @@
+﻿@page
+@model WebApplication1.Pages.aggiungiModel
+@{
+}
+
+@if (Model.errorMessage.Length > 0)
+{
+	<div class="alert alert-warning alert-dismissible fade show" role='alert'>
+		<strong>@Model.errorMessage</strong>
+		<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Chiudi"></button>
+	</div>
+}
+
+<form method="post">
+	
+	<div class="row mb-3">
+		<label class="col-sm-3 col-form-label">Nome</label>
+		<div>
+			<input type="text" name="nome">
+		</div>
+	</div>
+
+	<div class="row mb-3">
+		<label class="col-sm-3 col-form-label">Cognome</label>
+		<div>
+			<input type="text" name="cognome">
+		</div>
+	</div>
+
+	<div class="row mb-3">
+		<label class="col-sm-3 col-form-label">Data di Nascita</label>
+		<div>
+			<input type="text" name="datanascita">
+		</div>
+	</div>
+
+	<div class="row mb-3">
+		<label class="col-sm-3 col-form-label">Telefono</label>
+		<div>
+			<input type="text" name="telefono">
+		</div>
+	</div>
+
+	<div>
+		<div>
+			<button type="submit" class="btn btn-primary">Crea</button>
+		</div>
+		<div>
+			<a href="test" class="btn btn-outline-primary" role=button>Annulla</a>
+		</div>
+	</div>
+</form>

@@ -1,0 +1,33 @@
+﻿@page
+@using System.Data.SqlClient;
+
+@{
+	String id = "" + Request.Query["id"];
+	String connectionString = "Data Source=(LocalDB)\\MSSQLLocalDB;" +
+				"AttachDbFilename=C:\\Users\\bortolanim\\Desktop\\WebApplication1\\db.mdf;" +
+				"Integrated Security=True;" +
+				"Connect Timeout=30";
+
+	try
+	{
+		//codice per cancellare la riga
+		using (SqlConnection connection = new SqlConnection(connectionString))
+		{
+			connection.Open();
+			String sql = $"DELETE FROM Anagrafica WHERE id like {id}";
+			using(SqlCommand command = new SqlCommand(sql, connection))
+			{
+				command.ExecuteNonQuery();
+			}
+
+			connection.Close();
+		}
+	}
+	catch(Exception ex)
+	{
+
+	}
+
+	Response.Redirect("test");
+
+}
