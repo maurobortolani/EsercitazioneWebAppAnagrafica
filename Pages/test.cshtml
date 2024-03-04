@@ -1,0 +1,36 @@
+﻿@page
+@model WebApplication1.Pages.testModel
+@{
+}
+
+@if (Model.errorMessage.Length > 0)
+{
+	<div>
+		<strong>@Model.errorMessage</strong>
+	</div>
+}
+
+<div>
+	<table width="80%">
+		<tr>
+			<th>Nome</th>
+			<th>Cognome</th>
+			<th>Data di Nascita</th>
+			<th>Telefono</th>
+		</tr>
+		
+		@foreach(var x in @Model.lista)
+		{
+			<tr>					
+					<td width="20%">@x.Nome</td>
+					<td width="20%">@x.Cognome</td>
+					<td width="20%">@x.DataNascita</td>
+					<td width="20%">@x.telefono</td>
+					<td width="20%">
+						<a class="btn btn-primary btn-sm" href="modifica?id=@x.id">Modifca</a>
+						<a class="btn btn-danger btn-sm" href="cancella?id=@x.id">Cancella</a>
+					</td>
+			</tr>
+		}
+	</table>
+</div>
