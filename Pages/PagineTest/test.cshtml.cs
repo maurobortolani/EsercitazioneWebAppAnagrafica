@@ -4,7 +4,7 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Text;
 
-namespace WebApplication1.Pages
+namespace WebApplication1.Pages.PagineTest
 {
     public class testModel : PageModel
     {
@@ -17,22 +17,22 @@ namespace WebApplication1.Pages
             public string DataNascita;
             public string telefono;
         }
-        
+
         public List<anagrafica> lista = new List<anagrafica>();
         public void OnGet()
-        {			  
+        {
             try
             {
-                using(SqlConnection connection = new SqlConnection(configurazioni.connectionString))
+                using (SqlConnection connection = new SqlConnection(configurazioni.connectionString))
                 {
                     connection.Open();
-                    String sql = "SELECT * FROM Anagrafica";
+                    string sql = "SELECT * FROM Anagrafica";
 
-                    using(SqlCommand command = new SqlCommand(sql, connection))
+                    using (SqlCommand command = new SqlCommand(sql, connection))
                     {
-                        using(SqlDataReader reader = command.ExecuteReader())
+                        using (SqlDataReader reader = command.ExecuteReader())
                         {
-                            while(reader.Read())
+                            while (reader.Read())
                             {
                                 anagrafica dato = new anagrafica();
                                 dato.id = reader.GetInt32(0);
@@ -49,8 +49,8 @@ namespace WebApplication1.Pages
             }
             catch (Exception ex)
             {
-				errorMessage = ex.Message;
-			}
-		}
-	}
+                errorMessage = ex.Message;
+            }
+        }
+    }
 }

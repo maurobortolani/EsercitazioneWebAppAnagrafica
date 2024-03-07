@@ -1,5 +1,5 @@
 ﻿@page
-@model WebApplication1.Pages.aggiungiModel
+@model modificaModel
 @{
 }
 
@@ -11,39 +11,41 @@
 	</div>
 }
 
+
 <form method="post">
-	
+	<input type="hidden" name="id" value="@Model.dato.id" />
+
 	<div class="row mb-3">
 		<label class="col-sm-3 col-form-label">Nome</label>
 		<div>
-			<input type="text" name="nome">
+			<input type="text" name="nome" value="@Model.dato.Nome.Trim()">
 		</div>
 	</div>
 
 	<div class="row mb-3">
 		<label class="col-sm-3 col-form-label">Cognome</label>
 		<div>
-			<input type="text" name="cognome">
+			<input type="text" name="cognome" value="@Model.dato.Cognome.Trim()">
 		</div>
 	</div>
 
 	<div class="row mb-3">
 		<label class="col-sm-3 col-form-label">Data di Nascita</label>
 		<div>
-			<input type="text" name="datanascita">
+			<input type="text" name="datanascita" value="@Model.dato.DataNascita.Trim()">
 		</div>
 	</div>
 
 	<div class="row mb-3">
 		<label class="col-sm-3 col-form-label">Telefono</label>
 		<div>
-			<input type="text" name="telefono">
+			<input type="text" name="telefono" value="@Model.dato.telefono.Trim()">
 		</div>
 	</div>
 
 	<div>
 		<div>
-			<button type="submit" class="btn btn-primary">Crea</button>
+			<button type="submit" class="btn btn-primary">Modifica</button>
 		</div>
 		<div>
 			<a href="test" class="btn btn-outline-primary" role=button>Annulla</a>

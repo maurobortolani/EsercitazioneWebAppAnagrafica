@@ -1,0 +1,37 @@
+﻿@page
+@model WebApplication1.Pages.Dati.listaDatiModel
+@{
+}
+
+@if (Model.errorMessage.Length > 0)
+{
+	<div class="alert alert-warning alert-dismissible fade show" role='alert'>
+		<strong>@Model.errorMessage</strong>
+		<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Chiudi"></button>
+	</div>
+}
+
+<a class="btn btn-primary btn-sm" href="aggiungi">Nuovo Utente</a>
+
+<div>
+	<table width="80%">
+		<tr>
+			<th>Id</th>
+			<th>Data</th>
+			<th>Valore</th>
+		</tr>
+
+		@foreach (var x in @Model.lista)
+		{
+			<tr>
+				<td width="20%">@x.id</td>
+				<td width="20%">@x.Data</td>
+				<td width="20%">@x.Valore</td>
+				<td width="20%">
+					<a class="btn btn-primary btn-sm" href="modifica?id=@x.id">Modifca</a>
+					<a class="btn btn-danger btn-sm" href="cancella?id=@x.id">Cancella</a>
+				</td>
+			</tr>
+		}
+	</table>
+</div>
