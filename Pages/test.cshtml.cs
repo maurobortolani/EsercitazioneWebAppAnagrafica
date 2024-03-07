@@ -20,20 +20,10 @@ namespace WebApplication1.Pages
         
         public List<anagrafica> lista = new List<anagrafica>();
         public void OnGet()
-        {
-			String connectionString = "Data Source=(LocalDB)\\MSSQLLocalDB;" +
-				"AttachDbFilename=C:\\Users\\bortolanim\\Desktop\\WebApplication1\\db.mdf;" +
-                "Integrated Security=True;" +
-                "Connect Timeout=30";
-
-			/*
-			 * AttachDbFilename="db.mdf";
-             * AttachDbFilename="..\\..\\..\\db.mdf";
-             */
-
+        {			  
             try
             {
-                using(SqlConnection connection = new SqlConnection(connectionString))
+                using(SqlConnection connection = new SqlConnection(configurazioni.connectionString))
                 {
                     connection.Open();
                     String sql = "SELECT * FROM Anagrafica";

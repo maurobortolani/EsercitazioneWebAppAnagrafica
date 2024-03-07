@@ -9,10 +9,6 @@ namespace WebApplication1.Pages
     public class modificaModel : PageModel
     {
         public string errorMessage = "";
-		String connectionString = "Data Source=(LocalDB)\\MSSQLLocalDB;" +
-				"AttachDbFilename=C:\\Users\\bortolanim\\Desktop\\WebApplication1\\db.mdf;" +
-				"Integrated Security=True;" +
-				"Connect Timeout=30";
 		public anagrafica dato = new anagrafica();
 
 		/*
@@ -24,7 +20,7 @@ namespace WebApplication1.Pages
 
             try
             {
-				using (SqlConnection connection = new SqlConnection(connectionString))
+				using (SqlConnection connection = new SqlConnection(configurazioni.connectionString))
 				{
 					connection.Open();
 					String sql = $"SELECT * FROM Anagrafica WHERE id like '{id}'";
@@ -65,7 +61,7 @@ namespace WebApplication1.Pages
 
             try
             {
-                using (SqlConnection connection = new SqlConnection(connectionString))
+                using (SqlConnection connection = new SqlConnection(configurazioni.connectionString))
                 {
                     connection.Open();
 					DateTime dt = DateTime.ParseExact(dato.DataNascita, "dd/MM/yyyy", CultureInfo.InvariantCulture);
