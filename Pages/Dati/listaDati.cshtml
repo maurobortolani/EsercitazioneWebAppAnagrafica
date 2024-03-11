@@ -11,6 +11,50 @@
 	</div>
 }
 
+<!-- inseriamo qui il grafico -->
+
+<div style="width: 50%;">
+	<canvas id="graficoTest"></canvas>	
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script>
+	const ctx = document.getElementById('graficoTest');
+	
+	new Chart(ctx, {
+	  type: 'line',
+	  data: {
+			labels: [
+				@for(int i = 0; i < Model.lista.Count; i++)
+				{
+					@Html.Raw("'");
+					@Model.lista[i].id;
+					@Html.Raw("'");
+					if (i < Model.lista.Count - 1) @Html.Raw(", ");
+				}
+				],
+		datasets: [{
+			label: 'Dati',
+			data: [@Model.datiString1.listaDati],
+				borderWidth: 1,
+				tension: 0.3,
+				fill: true
+			}]
+	  },
+	  options: {
+		scales: {
+		  y: {
+			beginAtZero: true
+		  }
+		}
+	  }
+	});
+</script>
+
+
+
+
 <a class="btn btn-primary btn-sm" href="aggiungi">Nuovo Utente</a>
 
 <div>
