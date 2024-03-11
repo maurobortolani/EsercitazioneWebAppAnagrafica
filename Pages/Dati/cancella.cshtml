@@ -1,0 +1,29 @@
+﻿@page
+@using System.Data.SqlClient;
+
+@{
+	String id = "" + Request.Query["id"];
+
+	try
+	{
+		//codice per cancellare la riga
+		using (SqlConnection connection = new SqlConnection(configurazioni.connectionString))
+		{
+			connection.Open();
+			String sql = $"DELETE FROM Dati WHERE id like {id}";
+			using (SqlCommand command = new SqlCommand(sql, connection))
+			{
+				command.ExecuteNonQuery();
+			}
+
+			connection.Close();
+		}
+	}
+	catch (Exception ex)
+	{
+
+	}
+
+	Response.Redirect("listaDati");
+
+}
