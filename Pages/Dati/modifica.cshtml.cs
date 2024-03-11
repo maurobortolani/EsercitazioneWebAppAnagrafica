@@ -31,7 +31,6 @@ namespace WebApplication1.Pages.Dati
 						{
 							if (reader.Read())
 							{
-								dati dato = new dati();
 								dato.id = reader.GetInt32(0);
 								dato.Data = reader.GetDateTime(1).ToString("dd/MM/yyyy HH:mm");
 								dato.Valore = reader.GetInt32(2).ToString();
@@ -53,22 +52,20 @@ namespace WebApplication1.Pages.Dati
 		public void OnPost()
 		{
 			dato.id = Convert.ToInt32(Request.Form["id"]);
-			dato.Data = Request.Form["nome"];
-			dato.Valore = Request.Form["cognome"];
+			dato.Data = Request.Form["data"];
+			dato.Valore = Request.Form["valore"];
 
 			try
 			{
 				using (SqlConnection connection = new SqlConnection(configurazioni.connectionString))
 				{
 					connection.Open();
-					DateTime dt = DateTime.ParseExact(dato.Data, "dd/MM/yyyy", CultureInfo.InvariantCulture);
+					DateTime dt = DateTime.ParseExact(dato.Data, "dd/MM/yyyy HH:mm", CultureInfo.InvariantCulture);
 
-					string sql = $"UPDATE Anagrafica " +
-						$"SET Nome='{dato.Nome.Trim()}', " +
-						$"Cognome='{dato.Cognome.Trim()}', " +
-						$"Telefono='{dato.telefono.Trim()}', " +
-						$"DataNascita='{dt.ToString("MM/dd/yyyy")}' " +
-						$"WHERE id like '{dato.id}'";
+					string sql = $"UPDATE Dati " +
+						$"SET Data='{dt.ToString("MM/dd/yyyy HH:mm")}', " +
+						$"Valore='{dato.Valore.Trim()}' " +						
+						$"WHERE Id like '{dato.id}'";
 
 					using (SqlCommand command = new SqlCommand(sql, connection))
 					{
@@ -82,7 +79,7 @@ namespace WebApplication1.Pages.Dati
 				errorMessage = ex.Message;
 			}
 
-			Response.Redirect("test");
+			Response.Redirect("listaDati");
 		}
 	}
 }
