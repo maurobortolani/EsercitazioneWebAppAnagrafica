@@ -24,7 +24,7 @@ namespace WebApplication1.Pages.Dati
 				using (SqlConnection connection = new SqlConnection(configurazioni.connectionString))
 				{
 					connection.Open();
-					string sql = "SELECT * FROM Dati";
+					string sql = "SELECT * FROM Dati ORDER BY Data";
 
 					using (SqlCommand command = new SqlCommand(sql, connection))
 					{
