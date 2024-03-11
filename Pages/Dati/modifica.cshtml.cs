@@ -32,7 +32,7 @@ namespace WebApplication1.Pages.Dati
 							if (reader.Read())
 							{
 								dato.id = reader.GetInt32(0);
-								dato.Data = reader.GetDateTime(1).ToString("dd/MM/yyyy HH:mm");
+								dato.Data = reader.GetDateTime(1).ToString("yyyy-MM-ddTHH:mm");
 								dato.Valore = reader.GetInt32(2).ToString();
 							}
 						}
@@ -60,7 +60,7 @@ namespace WebApplication1.Pages.Dati
 				using (SqlConnection connection = new SqlConnection(configurazioni.connectionString))
 				{
 					connection.Open();
-					DateTime dt = DateTime.ParseExact(dato.Data, "dd/MM/yyyy HH:mm", CultureInfo.InvariantCulture);
+					DateTime dt = DateTime.ParseExact(dato.Data, "yyyy-MM-ddTHH:mm", CultureInfo.InvariantCulture);
 
 					string sql = $"UPDATE Dati " +
 						$"SET Data='{dt.ToString("MM/dd/yyyy HH:mm")}', " +

@@ -26,7 +26,7 @@ namespace WebApplication1.Pages.Dati
 				using (SqlConnection connection = new SqlConnection(configurazioni.connectionString))
 				{
 					connection.Open();
-					DateTime dt = DateTime.ParseExact(dato.Data, "dd/MM/yyyy HH:mm", CultureInfo.InvariantCulture);
+					DateTime dt = DateTime.ParseExact(dato.Data, "yyyy-MM-ddTHH:mm", CultureInfo.InvariantCulture);
 
 					string sql = $"INSERT INTO Dati " +
 						$"(Data, Valore) VALUES " +
